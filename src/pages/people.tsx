@@ -62,7 +62,11 @@ export default function People() {
               </p>
             </div>
           </section>
-          <div className="image-wrapper"></div>
+          <div className="image-wrapper">
+            <button>
+              <Link href="/">Home</Link>
+            </button>
+          </div>
         </main>
       </>
     )

@@ -7,6 +7,7 @@ import SearchBar from "@/components/SearchBar"
 import PeopleComp from "@/components/People"
 import PlanetsComp from "@/components/Planets"
 import StarshipsComp from "@/components/Starships"
+import Link from "next/link"
 
 export default function Home() {
   const [people, setPeople] = useState<SearchedData<People>>()
@@ -57,23 +58,19 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Star Wars | Info</title>
+        <title>Star Wars | Home</title>
         <meta name="description" content="Star Wars" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div id="home">
-        <nav></nav>
         <main>
           <section>
             <header className={`header ${showResults && "hide"}`}>
               <h1>Star wars</h1>
               <p>
-                dbkjbsf Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Impedit omnis corrupti nisi exercitationem tempore aliquam,
-                repudiandae totam velit illum voluptatum alias nulla aspernatur
-                suscipit ratione similique, iste laboriosam reiciendis
-                architecto!
+                You can search & view planets, people, starships and the
+                relationships between them.
               </p>
             </header>
 
@@ -90,7 +87,11 @@ export default function Home() {
               <StarshipsComp starship={starship} />
             )}
           </section>
-          <div className="image-wrapper"></div>
+          <div className="image-wrapper">
+            <button>
+              <Link href="/">Home</Link>
+            </button>
+          </div>
         </main>
       </div>
     </>

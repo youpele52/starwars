@@ -31,5 +31,28 @@
     background-image: url("/storm-noir.jpg");
     background-size: cover;
     background-repeat: no-repeat;
+    button {
+      position: absolute;
+      top: 5rem;
+      right: 5rem;
+      background: $touch-of-red;
+      width: 10rem;
+      height: 3.5rem;
+      font-size: 2rem;
+      text-decoration: none;
+      border: none;
+      padding: 0;
+      font: inherit;
+      cursor: pointer;
+      outline: inherit;
+      border-radius: 6rem;
+      a {
+        text-decoration: none;
+        color: white;
+        font-weight: 600;
+        font-weight: 200;
+        font-size: large;
+      }
+    }
   }
 }

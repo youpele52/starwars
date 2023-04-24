@@ -44,8 +44,8 @@
           // top: 250px;
           // right: 1px;
         }
-        p{
-            line-height: 2rem;
+        p {
+          line-height: 2rem;
         }
       }
       .header.hide {
@@ -78,6 +78,29 @@
       background-repeat: no-repeat;
       width: 60vw;
       height: 100vh;
+
+      button {
+        position: absolute;
+        top: 5rem;
+        right: 5rem;
+        background: $touch-of-red;
+        width: 10rem;
+        height: 3.5rem;
+        font-size: 2rem;
+        text-decoration: none;
+        border: none;
+        padding: 0;
+        font: inherit;
+        cursor: pointer;
+        outline: inherit;
+        border-radius: 6rem;
+        a {
+          text-decoration: none;
+          color: white;
+          font-weight: 200;
+          font-size: large;
+        }
+      }
     }
   }
 }

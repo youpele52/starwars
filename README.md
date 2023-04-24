@@ -1,15 +1,21 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This is a Star Wars app built with [Next.js](https://nextjs.org/) using [The Star Wars`API SWAPI`](https://swapi.dev/).
 
 ## Getting Started
 
-First, run the development server:
+First, run the following command to install the libraries and the dependencies used in this app:
 
 ```bash
-npm run dev
-# or
+
+yarn
+```
+
+## Start the app
+
+After installing the all the dependencies, start the app by using this command
+
+```bash
+
 yarn dev
-# or
-pnpm dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.

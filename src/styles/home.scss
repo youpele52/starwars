@@ -1,0 +1,83 @@
+// HOME
+@import "./global.scss";
+
+#home {
+  height: 100vh;
+  width: 100vw;
+  main {
+    display: flex;
+
+    section {
+      display: flex;
+      justify-content: start;
+      align-items: start;
+      flex-direction: column;
+      width: 50vw;
+      padding: 4rem;
+      header {
+        h1 {
+          font-size: 8rem;
+          line-height: 8rem;
+          margin: 0;
+        }
+        h1:after,
+        h1:before {
+          content: "";
+          background: $touch-of-red;
+          width: 15rem;
+          height: 3.5rem;
+          position: relative;
+          border-radius: 3px;
+          display: block;
+          z-index: -3;
+        }
+
+        h1:before {
+          // top: 220px;
+          // left: 50px;
+          top: 80px;
+          left: -10px;
+        }
+        h1:after {
+          right: -400px;
+          bottom: 30px;
+          // top: 250px;
+          // right: 1px;
+        }
+        p{
+            line-height: 2rem;
+        }
+      }
+      .header.hide {
+        transform: translate(0, 60px);
+        transition: all 0.3s cubic-bezier(0, 0.105, 0.035, 1.57);
+        transition-delay: 0.3s;
+
+        animation: fadeOutAnimation ease 0.2s;
+        animation-fill-mode: forwards;
+
+        display: none;
+        @keyframes fadeOutAnimation {
+          0% {
+            opacity: 1;
+            scale: 1;
+          }
+          100% {
+            opacity: 0;
+            scale: 1.5;
+          }
+        }
+      }
+    }
+    .image-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-image: url("/storm-noir.jpg");
+      background-size: cover;
+      background-repeat: no-repeat;
+      width: 60vw;
+      height: 100vh;
+    }
+  }
+}

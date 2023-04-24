@@ -1,0 +1,31 @@
+@import "./global.scss";
+
+#searchable-fields {
+  margin: 2rem 0.5rem;
+  .cards {
+    width: 50vw;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-gap: 32px;
+    position: relative;
+    z-index: 1;
+  }
+
+}
+
+#info {
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  flex-direction: column;
+
+  .name span {
+    font-weight: bolder;
+  }
+
+  p button {
+    cursor: pointer;
+    color: $touch-of-red;
+    border-radius: 50%;
+  }
+}

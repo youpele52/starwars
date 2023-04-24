@@ -28,14 +28,14 @@ export interface People {
   gender: string
   hair_color: string
   height: string
-  homeworld: string | Planet
+  homeworld: string
   mass: string
   name: string
   skin_color: string
   created: Date
   edited: Date
   species: string[] | Specie[]
-  starships: string[] | Starship[]
+  starships: string[]
   url: string
   vehicles: string[] | Vehicle[]
 }
@@ -49,7 +49,7 @@ export interface Planet {
   name: string
   orbital_period: string
   population: string
-  residents: string[] | People[]
+  residents: string[]
   rotation_period: string
   surface_water: string
   terrain: string
@@ -88,7 +88,7 @@ export interface Starship {
   name: string
   passengers: string
   films: string[] | Film[]
-  pilots: string[] | People[]
+  pilots: string[]
   starship_class: string
   url: string
 }

@@ -28,7 +28,7 @@ export async function searchAPI(
       searchedPeople = data
     })
   const fetchStarship = await axios
-    .get(`${SWAPI_BASE_URL}/people/?search=${searchTerm}`)
+    .get(`${SWAPI_BASE_URL}/starships/?search=${searchTerm}`)
     .then(async (response) => {
       const data = await response.data
       searchedStarship = data
@@ -42,4 +42,45 @@ export async function searchAPI(
 }
 // general fetch with given url
 
-async function fetchData(url: string) {}
+export async function fetchPersonData(
+  url: string,
+  setResult: (result: People | Starship | Planet) => void
+) {
+  let person: People
+  const fetchPeople = await axios.get(`${url}`).then(async (response) => {
+    const data = await response.data
+    person = data
+  })
+
+  Promise.all([fetchPeople]).then(() => {
+    setResult(person)
+  })
+}
+export async function fetchPlanetData(
+  url: string,
+  setResult: (result: People | Starship | Planet) => void
+) {
+  let planet: Planet
+  const fetchPlanet = await axios.get(`${url}`).then(async (response) => {
+    const data = await response.data
+    planet = data
+  })
+
+  Promise.all([fetchPlanet]).then(() => {
+    setResult(planet)
+  })
+}
+export async function fetchStarshipData(
+  url: string,
+  setResult: (result: People | Starship | Planet) => void
+) {
+  let starship: Starship
+  const fetchStarship = await axios.get(`${url}`).then(async (response) => {
+    const data = await response.data
+    starship = data
+  })
+
+  Promise.all([fetchStarship]).then(() => {
+    setResult(starship)
+  })
+}

@@ -16,7 +16,6 @@ export default function Planets({ planets }: Props) {
     state.result,
     state.setResult,
   ])
-  console.log("file: People.tsx:17 > People > result:", result)
   return (
     <div id="searchable-fields">
       <h2>Planets</h2>

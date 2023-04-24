@@ -15,9 +15,6 @@ export default function Home() {
   const [searchTerm, setSearchTerm] = useState<string>("")
   const [showResults, setShowResults] = useState(false)
   const [canUseSearchBar, setCanUseSearchBar] = useState(true)
-  console.log("file: index.tsx:15 > Home > people:", people)
-  console.log("file: index.tsx:16 > Home > planets:", planets)
-  console.log("file: index.tsx:19 > Home > starship:", starship)
 
   const onSubmit = useCallback(
     (event: FormEvent<HTMLFormElement>) => {

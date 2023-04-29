@@ -10,13 +10,12 @@
     position: relative;
     z-index: 1;
   }
-
 }
 
 #info {
   display: flex;
-  justify-content: start;
-  align-items: start;
+  justify-content: flex-start;
+  align-items: flex-start;
   flex-direction: column;
 
   .name span {

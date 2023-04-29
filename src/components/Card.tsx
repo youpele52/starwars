@@ -1,16 +1,20 @@
-import React, { ReactNode } from "react"
+import React, { ReactNode } from "react";
+import Link from "next/link";
 
 interface Props<T> {
-  icon: ReactNode
-  data: T
+  icon: ReactNode;
+  data: T;
+  url: string;
 }
-export default function Card<T>({ icon, data }: Props<T>) {
+export default function Card<T>({ icon, data, url }: Props<T>) {
   return (
-    <div id="card">
-      <div className="icon">{icon}</div>
-      <div className="data">
-        <>{data}</>
+    <Link href={url}>
+      <div id="card">
+        <div className="icon">{icon}</div>
+        <div className="data">
+          <>{data}</>
+        </div>
       </div>
-    </div>
-  )
+    </Link>
+  );
 }

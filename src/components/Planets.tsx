@@ -1,21 +1,17 @@
-import React from "react"
-import { People, Planet, SearchedData } from "@/utils/types"
-import Card from "./Card"
-import { FiUser } from "react-icons/fi"
-import { MdOutlineRocketLaunch } from "react-icons/md"
-import { GiWorld } from "react-icons/gi"
-import { useResultStore } from "@/store"
-import { fetchPersonData } from "@/utils/helpers"
-import Link from "next/link"
+import React from "react";
+import { Planet, SearchedData } from "@/utils/types";
+import Card from "./Card";
+import { FiUser } from "react-icons/fi";
+import { MdOutlineRocketLaunch } from "react-icons/md";
+import { GiWorld } from "react-icons/gi";
+import { extractIdfromStarWarsApiUrl } from "@/utils/helpers";
+import Link from "next/link";
+import { SEARCH_QUERY } from "@/utils/constants";
 
 interface Props {
-  planets: SearchedData<Planet>
+  planets: SearchedData<Planet>;
 }
 export default function Planets({ planets }: Props) {
-  const [result, setResult] = useResultStore((state) => [
-    state.result,
-    state.setResult,
-  ])
   return (
     <div id="searchable-fields">
       <h2>Planets</h2>
@@ -25,6 +21,9 @@ export default function Planets({ planets }: Props) {
             <Card
               key={planet.name}
               icon={<GiWorld />}
+              url={`/planet?${SEARCH_QUERY}=${extractIdfromStarWarsApiUrl(
+                planet.url
+              )}`}
               data={
                 <div id="info">
                   <p className="name">
@@ -37,24 +36,25 @@ export default function Planets({ planets }: Props) {
                     People:{" "}
                     {planet.residents.map((person, i) => {
                       return (
-                        <button
-                          key={i}
-                          onClick={() => fetchPersonData(person, setResult)}
-                        >
-                          <Link href="/people">
+                        <button key={i}>
+                          <Link
+                            href={`/people?${SEARCH_QUERY}=${extractIdfromStarWarsApiUrl(
+                              person
+                            )}`}
+                          >
                             <FiUser />
                           </Link>
                         </button>
-                      )
+                      );
                     })}
                   </p>
                 </div>
               }
             />
-          )
+          );
         })}
       </div>
       <div className="buttons"></div>
     </div>
-  )
+  );
 }

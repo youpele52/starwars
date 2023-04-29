@@ -1,26 +1,17 @@
-import React from "react"
-import { People, SearchedData } from "@/utils/types"
-import Card from "./Card"
-import { FiUser } from "react-icons/fi"
-import { MdOutlineRocketLaunch } from "react-icons/md"
-import { GiWorld } from "react-icons/gi"
-import { useResultStore } from "@/store"
-import {
-  fetchPersonData,
-  fetchPlanetData,
-  fetchStarshipData,
-} from "@/utils/helpers"
-import Link from "next/link"
+import React from "react";
+import { People, SearchedData } from "@/utils/types";
+import Card from "./Card";
+import { FiUser } from "react-icons/fi";
+import { MdOutlineRocketLaunch } from "react-icons/md";
+import { GiWorld } from "react-icons/gi";
+import Link from "next/link";
+import { SEARCH_QUERY } from "@/utils/constants";
+import { extractIdfromStarWarsApiUrl } from "@/utils/helpers";
 
 interface Props {
-  people: SearchedData<People>
+  people: SearchedData<People>;
 }
 export default function People({ people }: Props) {
-  const [result, setResult] = useResultStore((state) => [
-    state.result,
-    state.setResult,
-  ])
-
   return (
     <div id="searchable-fields">
       <h2>People</h2>
@@ -30,6 +21,7 @@ export default function People({ people }: Props) {
             <Card
               key={person.name}
               icon={<FiUser />}
+              url={`/people?${SEARCH_QUERY}=${person.url.split("/")[5]}`}
               data={
                 <div id="info">
                   <p className="name">
@@ -39,12 +31,12 @@ export default function People({ people }: Props) {
                   <p>Height: {person.height}</p>
                   <p>
                     Planet:
-                    <button
-                      onClick={() =>
-                        fetchPlanetData(person.homeworld, setResult)
-                      }
-                    >
-                      <Link href="/planet">
+                    <button>
+                      <Link
+                        href={`/planet?${SEARCH_QUERY}=${extractIdfromStarWarsApiUrl(
+                          person.homeworld
+                        )}`}
+                      >
                         <GiWorld size={15} />
                       </Link>
                     </button>
@@ -53,24 +45,25 @@ export default function People({ people }: Props) {
                     Starships:{" "}
                     {person.starships.map((ship, i) => {
                       return (
-                        <button
-                          key={i}
-                          onClick={() => fetchStarshipData(ship, setResult)}
-                        >
-                          <Link href="/starship">
+                        <button key={i}>
+                          <Link
+                            href={`/planet?${SEARCH_QUERY}=${extractIdfromStarWarsApiUrl(
+                              ship
+                            )}`}
+                          >
                             <MdOutlineRocketLaunch />
                           </Link>
                         </button>
-                      )
+                      );
                     })}
                   </p>
                 </div>
               }
             />
-          )
+          );
         })}
       </div>
       <div className="buttons"></div>
     </div>
-  )
+  );
 }

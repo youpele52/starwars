@@ -1,45 +1,48 @@
 import Head from "next/head";
 import React, { useEffect, useState } from "react";
-import { Planet } from "@/utils/types";
+import { Starship } from "@/utils/types";
 import router, { useRouter } from "next/router";
 import { GiWorld } from "react-icons/gi";
-import { extractIdfromStarWarsApiUrl, fetchPlanetData } from "@/utils/helpers";
+import {
+  extractIdfromStarWarsApiUrl,
+  fetchStarshipData,
+} from "@/utils/helpers";
 import { MdOutlineRocketLaunch } from "react-icons/md";
 import Link from "next/link";
 import { FiUser } from "react-icons/fi";
-import { PLANETS_BASE_URL, SEARCH_QUERY } from "@/utils/constants";
+import { SEARCH_QUERY, STARSHIP_BASE_URL } from "@/utils/constants";
 
-export default function Planet() {
+export default function Starships() {
   const { query } = useRouter();
   const search_query = query[SEARCH_QUERY] as string | undefined;
-  const planetUrl = `${PLANETS_BASE_URL}${search_query}/`;
-
-  const [planet, setPlanet] = useState<Planet>();
+  const [starship, setStarship] = useState<Starship>();
+  const starshipUrl = `${STARSHIP_BASE_URL}${search_query}/`;
 
   useEffect(() => {
     if (search_query) {
-      fetchPlanetData(planetUrl, setPlanet);
+      fetchStarshipData(starshipUrl, setStarship);
     }
-  }, [planetUrl, search_query]);
-  if (planet)
+  }, [starshipUrl, search_query]);
+
+  if (starship)
     return (
       <>
         <Head>
-          <title>Star Wars | Planet |{planet.name}</title>
+          <title>Star Wars | Starships | {starship.name}</title>
           <meta name="description" content="Star Wars" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <main id="detail">
           <section>
-            <h1>{planet.name}</h1>
+            <h1>{starship.name}</h1>
             <div className="info">
-              <p>Climate: {planet.climate}</p>
-              <p>Diamater: {planet.diameter}</p>
+              <p>Model: {starship.model}</p>
+              <p>Cargo capacity: {starship.cargo_capacity}</p>
 
               <p>
-                People:{" "}
-                {planet.residents?.map((person, i) => {
+                Pilots:{" "}
+                {starship.pilots?.map((person, i) => {
                   return (
                     <button key={i}>
                       <Link
@@ -47,6 +50,7 @@ export default function Planet() {
                           person
                         )}`}
                       >
+                        {" "}
                         <FiUser />
                       </Link>
                     </button>

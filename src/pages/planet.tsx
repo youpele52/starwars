@@ -25,7 +25,7 @@ export default function Planet() {
     return (
       <>
         <Head>
-          <title>Star Wars | Planet |{planet.name}</title>
+          <title>Star Wars | Planet | {planet.name}</title>
           <meta name="description" content="Star Wars" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <link rel="icon" href="/favicon.ico" />

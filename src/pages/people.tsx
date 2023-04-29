@@ -55,7 +55,7 @@ export default function People() {
                     return (
                       <button key={i}>
                         <Link
-                          href={`/planet?${SEARCH_QUERY}=${extractIdfromStarWarsApiUrl(
+                          href={`/starships?${SEARCH_QUERY}=${extractIdfromStarWarsApiUrl(
                             ship
                           )}`}
                         >

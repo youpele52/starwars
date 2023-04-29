@@ -22,7 +22,7 @@ export default function Starships({ starship }: Props) {
             <Card
               key={ship.name}
               icon={<GiWorld />}
-              url={`/starship?${SEARCH_QUERY}=${ship.url.split("/")[5]}`}
+              url={`/starships?${SEARCH_QUERY}=${ship.url.split("/")[5]}`}
               data={
                 <div id="info">
                   <p className="name">

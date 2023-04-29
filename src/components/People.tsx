@@ -21,7 +21,9 @@ export default function People({ people }: Props) {
             <Card
               key={person.name}
               icon={<FiUser />}
-              url={`/people?${SEARCH_QUERY}=${person.url.split("/")[5]}`}
+              url={`/people?${SEARCH_QUERY}=${extractIdfromStarWarsApiUrl(
+                person.url
+              )}`}
               data={
                 <div id="info">
                   <p className="name">
@@ -47,7 +49,7 @@ export default function People({ people }: Props) {
                       return (
                         <button key={i}>
                           <Link
-                            href={`/planet?${SEARCH_QUERY}=${extractIdfromStarWarsApiUrl(
+                            href={`/starships?${SEARCH_QUERY}=${extractIdfromStarWarsApiUrl(
                               ship
                             )}`}
                           >

@@ -1,34 +1,38 @@
-import Head from "next/head"
-import { Inter } from "next/font/google"
-import { People, Planet, SearchedData, Starship } from "@/utils/types"
-import { FormEvent, useCallback, useEffect, useState } from "react"
-import { searchAPI } from "@/utils/helpers"
-import SearchBar from "@/components/SearchBar"
-import PeopleComp from "@/components/People"
-import PlanetsComp from "@/components/Planets"
-import StarshipsComp from "@/components/Starships"
-import Link from "next/link"
+import Head from "next/head";
+import { Inter } from "next/font/google";
+import { People, Planet, SearchedData, Starship } from "@/utils/types";
+import { FormEvent, useCallback, useEffect, useState } from "react";
+import { searchAPI } from "@/utils/helpers";
+import SearchBar from "@/components/SearchBar";
+import PeopleComp from "@/components/People";
+import PlanetsComp from "@/components/Planets";
+import StarshipsComp from "@/components/Starships";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { SEARCH_QUERY } from "@/utils/constants";
 
 export default function Home() {
-  const [people, setPeople] = useState<SearchedData<People>>()
-  const [planets, setPlanets] = useState<SearchedData<Planet>>()
-  const [starship, setStarship] = useState<SearchedData<Starship>>()
-  const [searchTerm, setSearchTerm] = useState<string>("")
-  const [showResults, setShowResults] = useState(false)
-  const [canUseSearchBar, setCanUseSearchBar] = useState(true)
+  const [people, setPeople] = useState<SearchedData<People>>();
+  const [planets, setPlanets] = useState<SearchedData<Planet>>();
+  const [starship, setStarship] = useState<SearchedData<Starship>>();
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  const [showResults, setShowResults] = useState(false);
+  const [canUseSearchBar, setCanUseSearchBar] = useState(true);
+  const router = useRouter();
+  const search_query = router.query[SEARCH_QUERY] as string | undefined;
 
   const onSubmit = useCallback(
     (event: FormEvent<HTMLFormElement>) => {
-      event.preventDefault()
+      event.preventDefault();
 
       if (searchTerm === "") {
-        alert("Nothing to search\nEnter a text")
+        alert("Nothing to search\nEnter a text");
       } else if (canUseSearchBar) {
-        searchAPI(searchTerm, setPeople, setPlanets, setStarship)
+        router.push({ query: { [SEARCH_QUERY]: searchTerm } });
       }
     },
-    [canUseSearchBar, searchTerm]
-  )
+    [canUseSearchBar, router, searchTerm]
+  );
 
   useEffect(() => {
     if (
@@ -39,9 +43,9 @@ export default function Home() {
       planets &&
       planets.count == 0
     ) {
-      alert("No result found")
+      alert("No result found");
     }
-  }, [searchTerm, people, planets, starship])
+  }, [searchTerm, people, planets, starship]);
 
   useEffect(() => {
     if (
@@ -49,11 +53,17 @@ export default function Home() {
       (people && people.count > 0) ||
       (planets && planets.count > 0)
     ) {
-      setShowResults(true)
+      setShowResults(true);
     } else {
-      setShowResults(false)
+      setShowResults(false);
     }
-  }, [searchTerm, people, planets, starship])
+  }, [searchTerm, people, planets, starship]);
+
+  useEffect(() => {
+    if (search_query) {
+      searchAPI(search_query, setPeople, setPlanets, setStarship);
+    }
+  }, [search_query]);
 
   return (
     <>
@@ -95,5 +105,5 @@ export default function Home() {
         </main>
       </div>
     </>
-  )
+  );
 }

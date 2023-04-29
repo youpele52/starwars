@@ -28,7 +28,7 @@ export default function Home() {
       if (searchTerm === "") {
         alert("Nothing to search\nEnter a text");
       } else if (canUseSearchBar) {
-        router.push({ query: { [SEARCH_QUERY]: searchTerm } });
+        router.push({ query: { ...router.query, [SEARCH_QUERY]: searchTerm } });
       }
     },
     [canUseSearchBar, router, searchTerm]
